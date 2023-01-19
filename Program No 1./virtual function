@@ -1,53 +1,39 @@
 #include<iostream>
-#include<math.h>
-#include<string.h>
 using namespace std;
 class Shape {
-    public:
-    double length;
-    double breadth;
-    double radius;
-    Shape(double a, double b, double r){
-        length=a;
-        breadth=b;
-        radius=r;
-    }
-    virtual void Enter_data() {
-        cout<<"Enter_data";
-        
-    }
-    virtual void Perimeter(){
-        cout<<"Perimeter of Rectangle is: ";
-    }
-};
-class Rectangle : public Shape
-{
-    public:
-    Rectangle(double a, double b) : Shape(a,b){}
-    double perimeter()
-    {
-        cout<<"Perimeter of Rectangle is: "<<endl;
-        return length*breadth;
-    }
-};
-class Circle : public Shape 
-{
-    public:
-    Circle(double radius) : Shape(r){}
-    double perimeter()
-    {
-        cout<<"Perimeter of Circle is: "<<endl;
-        return (3.14 * r * r);
-    }
+public:
+    virtual double perimeter() = 0; // pure virtual function
+    
 };
 
-int main()
-{
-    Shape *s;
-    Rectangle r(10.0,20.0);
-    s =&r;
-    cout<<s -> Perimeter();
-    Circle c(10.0);
-    s =&c;  
-    cout<<s ->Perimeter();
+class Rectangle : public Shape {
+private:
+    double width, height;
+public:
+    Rectangle(double w, double h) : width(w), height(h) {}
+    double perimeter() {
+        return 2 * (width + height);
+    }
+    
+};
+
+class Circle : public Shape {
+private:
+    double radius;
+public:
+    Circle(double r) : radius(r) {}
+    double perimeter() {
+        return 2 * 3.14159 * radius;
+    }
+    
+};
+
+int main() {
+    Shape *shape1 = new Rectangle(10, 5);
+    Shape *shape2 = new Circle(2);
+
+    cout << "Perimeter of rectangle: " << shape1->perimeter() << endl;
+    cout << "Perimeter of circle: " << shape2->perimeter() << endl;
+
+    
 }
