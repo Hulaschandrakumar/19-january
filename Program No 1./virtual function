@@ -36,7 +36,7 @@ class Circle : public Shape
     Circle(double radius) : Shape(r){}
     double perimeter()
     {
-        cout<<"Area of Circle is: "<<endl;
+        cout<<"Perimeter of Circle is: "<<endl;
         return (3.14 * r * r);
     }
 };
